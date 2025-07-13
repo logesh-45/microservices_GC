@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Product Catalog service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Product Catalog service"
+          kubectl apply -f ./productCatalogServiceAccount.yaml
+          echo "Create a ClusterIP service for Product Catalog service"
+          kubectl apply -f ./productCatalogService.yaml
+          echo "Applying the Deployment manifests for Product Catalog service"
+          kubectl apply -f ./productCatalogDeployment.yaml
+          echo "Deployment for Product Catalog service completed"

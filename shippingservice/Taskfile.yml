@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Shipping service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Shipping service"
+          kubectl apply -f ./shippingServiceAccount.yaml
+          echo "Create a ClusterIP service for Shipping service"
+          kubectl apply -f ./shippingService.yaml
+          echo "Applying the Deployment manifests for Shipping service"
+          kubectl apply -f ./shippingDeployment.yaml
+          echo "Deployment for Shipping service completed"

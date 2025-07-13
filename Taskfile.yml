@@ -1,0 +1,65 @@
+version: '3'
+env:
+  BORDER: double
+  BORDER_FOREGROUND: "212"
+  PADDING: "1 1"
+  MARGIN: "1 1"
+  NAMESPACE: microservices-demo
+includes:
+  cartservice:
+    taskfile: cartservice/Taskfile.yml
+    dir: cartservice
+  adservice:
+    taskfile: adservice/Taskfile.yml
+    dir: adservice
+  productcatalogservice:
+    taskfile: productcatalogservice/Taskfile.yml
+    dir: productcatalogservice
+  loadgenerator: 
+    taskfile: loadgenerator/Taskfile.yml
+    dir: loadgenerator
+  shippingservice:
+    taskfile: shippingservice/Taskfile.yml
+    dir: shippingservice 
+  recommendationservice:
+    taskfile: recommendationservice/Taskfile.yml  
+    dir: recommendationservice
+  paymentservice:
+    taskfile: paymentservice/Taskfile.yml 
+    dir: paymentservice
+  frontend:
+    taskfile: frontend/Taskfile.yml
+    dir: frontend
+  redis-cart:
+    taskfile: redis-cart/Taskfile.yml
+    dir: redis-cart
+  emailservice:
+    taskfile: emailservice/Taskfile.yml
+    dir: emailservice
+  currencyservice:
+    taskfile: currencyservice/Taskfile.yml
+    dir: currencyservice
+  checkoutservice:
+    taskfile: checkoutservice/Taskfile.yml
+    dir: checkoutservice
+tasks:
+  01-create-namespace:
+    desc: "Create a namespace for Microservice application"
+    cmds:
+      - kubectl apply -f Namespace.yaml
+      - kubectl config set-context --current --namespace=${NAMESPACE}
+  02-deploy-services:
+    desc: "Deploy all services in the microservices-demo namespace"
+    cmds:
+      - task: cartservice:deploy
+      - task: adservice:deploy
+      - task: productcatalogservice:deploy
+      - task: loadgenerator:deploy 
+      - task: shippingservice:deploy
+      - task: recommendationservice:deploy
+      - task: paymentservice:deploy
+      - task: frontend:deploy
+      - task: redis-cart:deploy
+      - task: emailservice:deploy
+      - task: currencyservice:deploy
+      - task: checkoutservice:deploy

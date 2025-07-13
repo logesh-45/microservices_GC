@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Load Generator service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Load Generator service"
+          kubectl apply -f ./loadGeneratorServiceAccount.yaml
+          echo "Create a ClusterIP service for Load Generator service"
+          kubectl apply -f ./loadGeneratorService.yaml
+          echo "Applying the Deployment manifests for Load Generator service"
+          kubectl apply -f ./loadGeneratorDeployment.yaml
+          echo "Deployment for Load Generator service completed"

@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Email service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Email service"
+          kubectl apply -f ./emailServiceAccount.yaml
+          echo "Create a ClusterIP service for Email service"
+          kubectl apply -f ./emailService.yaml
+          echo "Applying the Deployment manifests for Email service"
+          kubectl apply -f ./emailDeployment.yaml
+          echo "Deployment for Email service completed"

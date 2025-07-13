@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Recommendation service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Recommendation service"
+          kubectl apply -f ./recommendationServiceAccount.yaml
+          echo "Create a ClusterIP service for Recommendation service"
+          kubectl apply -f ./recommendationService.yaml
+          echo "Applying the Deployment manifests for Recommendation service"
+          kubectl apply -f ./recommendationDeployment.yaml
+          echo "Deployment for Recommendation service completed"

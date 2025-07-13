@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Load Generator service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for payment service"
+          kubectl apply -f ./payServiceAccount.yaml
+          echo "Create a ClusterIP service for payment service"
+          kubectl apply -f ./payService.yaml
+          echo "Applying the Deployment manifests for payment service"
+          kubectl apply -f ./payDeployment.yaml
+          echo "Deployment for payment service completed"

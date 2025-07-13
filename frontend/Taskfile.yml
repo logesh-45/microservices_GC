@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Frontend service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Frontend service"
+          kubectl apply -f ./frontendServiceAccount.yaml
+          echo "Create a ClusterIP service for Frontend service"
+          kubectl apply -f ./frontendService.yaml
+          echo "Applying the Deployment manifests for Frontend service"
+          kubectl apply -f ./frontendDeployment.yaml
+          echo "Deployment for Frontend service completed"

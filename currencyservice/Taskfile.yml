@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Currency service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Currency service"
+          kubectl apply -f ./currencyServiceAccount.yaml
+          echo "Create a ClusterIP service for Currency service"
+          kubectl apply -f ./currencyService.yaml
+          echo "Applying the Deployment manifests for Currency service"
+          kubectl apply -f ./currencyDeployment.yaml
+          echo "Deployment for Currency service completed"

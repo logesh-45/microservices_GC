@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Cart service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Cart service"
+          kubectl apply -f ./cartServiceAccount.yaml
+          echo "Create a ClusterIP service for Cart service"
+          kubectl apply -f ./cartService.yaml
+          echo "Applying the Deployment manifests for Cart service"
+          kubectl apply -f ./cartDeployment.yaml
+          echo "Deployment for Cart service completed"

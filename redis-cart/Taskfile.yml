@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Redis Cart service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Redis Cart service"
+          kubectl apply -f ./redisCartServiceAccount.yaml
+          echo "Create a ClusterIP service for Redis Cart service"
+          kubectl apply -f ./redisCartService.yaml
+          echo "Applying the Deployment manifests for Redis Cart service"
+          kubectl apply -f ./redisCartDeployment.yaml
+          echo "Deployment for Redis Cart service completed"

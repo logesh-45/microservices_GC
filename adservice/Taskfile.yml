@@ -1,0 +1,13 @@
+version: '3'
+tasks:
+  deploy:
+    desc: Deploying kubenetes Ad service manifests
+    cmds:
+      - cmd: |-
+          echo "Create a service account for Ad service"
+          kubectl apply -f ./adServiceAccount.yaml
+          echo "Create a ClusterIP service for Ad service"
+          kubectl apply -f ./adService.yaml
+          echo "Applying the Deployment manifests for Ad service"
+          kubectl apply -f ./adDeployment.yaml
+          echo "Deployment for Ad service completed"
