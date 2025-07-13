@@ -27,8 +27,8 @@ spec:
                 - ALL
             privileged: false
             readOnlyRootFilesystem: true
-          image: redis:debian
-          # image: redis:alpine
+              #image: redis:debian
+          image: redis:alpine
           ports:
             - containerPort: 6379
           readinessProbe:

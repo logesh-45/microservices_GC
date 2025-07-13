@@ -45,11 +45,11 @@ spec:
           readinessProbe:
             initialDelaySeconds: 15
             grpc:
-              # port: 7070
-              port: 8080
+              port: 7070
+                #port: 8080
           livenessProbe:
             initialDelaySeconds: 15
             periodSeconds: 10
             grpc:
-              # port: 7070
-              port: 8080
+              port: 7070
+                #port: 8080
